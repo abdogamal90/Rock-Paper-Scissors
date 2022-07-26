@@ -1,8 +1,13 @@
+const btn1 = document.querySelector('.btn-1')
+const btn2 = document.querySelector('.btn-2')
+const btn3 = document.querySelector('.btn-3')
+
+
 
 
 let pcScore = 0;
 let playerScore = 0;
-var computerSelection = function () {
+var computerPlay = function () {
     const results = ["ROCK", "PAPER", "SCISSORS"]
 
     return results[Math.floor(Math.random() * results.length)]
@@ -50,34 +55,26 @@ function gameplay(computerSelection, playerSelection) {
 
 
 }
-function game(selection) {
-    if (selection != "ROCK" && selection != "PAPER" && selection != "SCISSORS") {
-        alert("Wrong choice")
-
-    }
-    else {
-        return gameplay(computerSelection(), selection)
-
-    }
-
-}
-
-
-for (let i = 0; i < 5; i++) {
-    var playerSelection = prompt("Enter Paper, Rock Or Scissors");
+function game(playerSelection) {
+    
     playerSelection = playerSelection.toUpperCase()
-    console.log(game(playerSelection))
-    console.log(`playerScore is : ${playerScore} ::::: computerScore is : ${pcScore}`)
-    if (playerScore > pcScore) {
-        console.log("You are the winner")
-
-    }
-    else if (pcScore > playerScore) {
-        console.log("Computer is the winner")
-    }
-    else {
-        console.log("Draw")
-    }
+    const computerSelection = computerPlay()
+    var main = document.querySelector('.main')
+    var result = document.querySelector('.result')
+    var winner = document.querySelector('.winner')
+    console.log(gameplay(computerSelection, playerSelection))
+    result.textContent += `playerScore is : ${playerScore} ::::: computerScore is : ${pcScore}`
+    result.textContent += `     status  :  ${gameplay(computerSelection, playerSelection)}
+`   
 
 }
 
+btn1.addEventListener('click', (e) => {
+    game(e.target.outerText)
+})
+btn2.addEventListener('click', (e) => {
+    game(e.target.outerText)
+})
+btn3.addEventListener('click', (e) => {
+    game(e.target.outerText)
+})
