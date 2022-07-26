@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+button{
+    padding: 15px;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    border-color: transparent;
+}
+.main{
+    display: flex;
+    flex-direction: row;
+}
+
+.winner{
+    display: flex;
+}
