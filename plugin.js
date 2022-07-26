@@ -1,14 +1,31 @@
+const btn1 = document.querySelector('.btn-1')
+const btn2 = document.querySelector('.btn-2')
+const btn3 = document.querySelector('.btn-3')
+const main = document.querySelector('.main')
+const result = document.querySelector('.result')
+const winner = document.querySelector('.winner')
+const youScore = document.querySelector('.you')
+const comScore = document.querySelector('.com')
+
+
 
 
 let pcScore = 0;
 let playerScore = 0;
-var computerSelection = function () {
+var computerPlay = function () {
     const results = ["ROCK", "PAPER", "SCISSORS"]
 
     return results[Math.floor(Math.random() * results.length)]
 }
 
 function gameplay(computerSelection, playerSelection) {
+    if (pcScore == 5) {
+        return "computer is winner"
+    }
+    else if (playerScore == 5) {
+        return "you are winner"
+    }
+    
 
     if (computerSelection === playerSelection) {
         return "Draw"
@@ -43,41 +60,32 @@ function gameplay(computerSelection, playerSelection) {
         return "Draw"
     }
     else {
+        
         pcScore++;
         return "computer has won"
     }
+    
 
 
 
 }
-function game(selection) {
-    if (selection != "ROCK" && selection != "PAPER" && selection != "SCISSORS") {
-        alert("Wrong choice")
-
-    }
-    else {
-        return gameplay(computerSelection(), selection)
-
-    }
-
+function game(playerSelection) {
+        playerSelection = playerSelection.toUpperCase()
+        const computerSelection = computerPlay()
+      
+        //result.textContent += `playerScore is : ${playerScore} ::::: computerScore is : ${pcScore}`
+   
+        result.textContent = `${gameplay(computerSelection, playerSelection)}`
+        youScore.textContent = `${playerScore}`
+        comScore.textContent = `${pcScore}`
 }
 
-
-for (let i = 0; i < 5; i++) {
-    var playerSelection = prompt("Enter Paper, Rock Or Scissors");
-    playerSelection = playerSelection.toUpperCase()
-    console.log(game(playerSelection))
-    console.log(`playerScore is : ${playerScore} ::::: computerScore is : ${pcScore}`)
-    if (playerScore > pcScore) {
-        console.log("You are the winner")
-
-    }
-    else if (pcScore > playerScore) {
-        console.log("Computer is the winner")
-    }
-    else {
-        console.log("Draw")
-    }
-
-}
-
+btn1.addEventListener('click', (e) => {
+    game(e.target.outerText)
+})
+btn2.addEventListener('click', (e) => {
+    game(e.target.outerText)
+})
+btn3.addEventListener('click', (e) => {
+    game(e.target.outerText)
+})
